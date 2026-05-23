@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Based Exit Exam Prep System | St. Mary's University</title>
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 38px; width: auto; border-radius: 4px; border: 1px solid var(--primary-neon); box-shadow: 0 0 8px rgba(0, 242, 254, 0.25);">
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="#problem">Challenges</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About Exit Exam</a></li>
+      <li style="display: flex; align-items: center; justify-content: center;">
+        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme" style="width: 32px; height: 32px; font-size: 0.95rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </li>
+      <li id="auth-nav-item">
+        <a href="/login" class="btn btn-secondary" style="padding: 0.5rem 1.25rem;">Login</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-grid"></div>
+    <div class="hero-content animate-fade-in">
+      <div class="hero-badge">
+        <i class="fa-solid fa-sparkles"></i> AI-Powered Performance Forecasting
+      </div>
+      <h1 class="hero-title">
+        Master Your Exit Exam with <br>
+        <span class="gradient-text-neon">Intelligent Analytics</span>
+      </h1>
+      <p class="hero-subtitle">
+        Empowering St. Mary's University students with personalized study pathways, real-time readiness predictions, and gamified study milestones. Prepare smarter, conquer stress, and guarantee your academic success.
+      </p>
+      <div class="hero-actions">
+        <a href="/register" class="btn btn-primary" id="hero-primary-btn">
+          Get Started Free <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="#about" class="btn btn-secondary">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Problem Statement Section -->
+  <section class="section" id="problem">
+    <div class="section-header">
+      <h2 class="section-title">The Challenge</h2>
+      <p class="section-subtitle">
+        National Exit Exams determine your graduation. Traditional preparation is disconnected, stressful, and lacks feedback.
+      </p>
+    </div>
+    
+    <div class="grid-3">
+      <div class="glass-card feature-card">
+        <div class="feature-icon" style="background: rgba(255, 51, 102, 0.08); border-color: rgba(255, 51, 102, 0.2); color: var(--accent-red);">
+          <i class="fa-solid fa-battery-empty"></i>
+        </div>
+        <h3>Low Student Engagement</h3>
+        <p>Staring at flat textbooks and dry worksheets makes studying exhausting, leading to early burnout and poor memory retention.</p>
+      </div>
+      
+      <div class="glass-card feature-card">
+        <div class="feature-icon" style="background: rgba(161, 140, 209, 0.08); border-color: rgba(161, 140, 209, 0.2); color: var(--accent-purple);">
+          <i class="fa-solid fa-chart-line-down"></i>
+        </div>
+        <h3>No Performance Tracking</h3>
+        <p>Students study blindly without knowing their current readiness score, making it impossible to identify which subjects need focus.</p>
+      </div>
+      
+      <div class="glass-card feature-card">
+        <div class="feature-icon" style="background: rgba(0, 242, 254, 0.08); border-color: rgba(0, 242, 254, 0.2); color: var(--primary-neon);">
+          <i class="fa-solid fa-puzzle-piece"></i>
+        </div>
+        <h3>Resource Fragmentation</h3>
+        <p>Mock questions, references, and subject guides are scattered across channels, resulting in wasted study time and confusion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="section-header">
+      <h2 class="section-title">AI-Powered Solutions</h2>
+      <p class="section-subtitle">
+        Our platform integrates direct insights, gamified triggers, and simulated machine learning to build your confidence.
+      </p>
+    </div>
+
+    <div class="grid-3">
+      <div class="glass-card feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-microchip"></i>
+        </div>
+        <h3>Readiness Forecasting</h3>
+        <p>Our rule-based engine weighs your test history and assigns an exact passing prediction score so you know exactly where you stand.</p>
+      </div>
+
+      <div class="glass-card feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-route"></i>
+        </div>
+        <h3>Smart Recommendations</h3>
+        <p>Identify weak topics instantly. The system maps your quiz mistakes into actionable concepts to review next.</p>
+      </div>
+
+      <div class="glass-card feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-gamepad"></i>
+        </div>
+        <h3>Streak & Gamification</h3>
+        <p>Stay motivated with login streaks, unlockable capability badges (Starter, Subject Master), and interactive milestones.</p>
+      </div>
+
+      <div class="glass-card feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-chart-radar"></i>
+        </div>
+        <h3>Visual Analytics</h3>
+        <p>Interactive radar and linear charts visualize your scores across Programming, Databases, Networking, and OS.</p>
+      </div>
+
+      <div class="glass-card feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-user-astronaut"></i>
+        </div>
+        <h3>AI Study Buddy</h3>
+        <p>An intelligent simulated advisor analyzes your score deviations and addresses you by name with specific tips.</p>
+      </div>
+
+      <div class="glass-card feature-card">
+        <div class="feature-icon">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+        </div>
+        <h3>Interactive Exam Console</h3>
+        <p>Familiarize yourself with the actual national exam UI using custom mock tests, live ticking timers, and auto-submission.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Exit Exam Section -->
+  <section class="section" id="about" style="background: rgba(255, 255, 255, 0.01); border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.02);">
+    <div class="grid-2">
+      <div class="info-block">
+        <h2 class="section-title">About the National Exit Exam</h2>
+        <p style="color: var(--text-secondary); line-height: 1.6;">
+          In accordance with the Ministry of Education guidelines, graduation candidates from St. Mary's University must clear the comprehensive Exit Exam. This test is designed to measure standard competencies and evaluate your practical understanding.
+        </p>
+        
+        <div class="info-item">
+          <div class="info-item-icon"><i class="fa-solid fa-check-double"></i></div>
+          <div>
+            <h4>5 Core Subject Verticals</h4>
+            <p>Questions assess Programming, Databases, Operating Systems, Software Engineering, and Computer Networking.</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-item-icon"><i class="fa-solid fa-circle-info"></i></div>
+          <div>
+            <h4>Graduation Requirement</h4>
+            <p>Failing the exit exam blocks the final degree certification. Practice is the key to minimizing examination anxiety.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistics Showcase -->
+      <div class="glass-card cta-banner" style="padding: 2.5rem; text-align: left; align-items: flex-start; gap: 1rem;">
+        <h3 style="color: var(--primary-neon); margin-bottom: 1rem;"><i class="fa-solid fa-chart-simple"></i> St. Mary's Prep Metrics</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.4rem;">
+              <span>Average Passing Rate (Traditional)</span>
+              <span style="color: var(--accent-red); font-weight: 700;">64%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+              <div style="width: 64%; height: 100%; background: var(--accent-red); border-radius: 3px;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.4rem;">
+              <span>Average Passing Rate (With AI-Prep Platform)</span>
+              <span style="color: var(--accent-green); font-weight: 700;">94%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+              <div style="width: 94%; height: 100%; background: var(--accent-green); border-radius: 3px; box-shadow: var(--glow-green);"></div>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; width: 100%;">
+          Based on simulated academic outcomes from testing modules inside SMU computer labs.
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick Stats Banner -->
+    <div class="glass-card stats-banner">
+      <div class="stat-item">
+        <div class="stat-value">1,200+</div>
+        <div class="stat-label">SMU Students Active</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">25,000+</div>
+        <div class="stat-label">Practice Questions Answered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">94.2%</div>
+        <div class="stat-label">Exit Exam Pass Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">3.8x</div>
+        <div class="stat-label">Engagement Multiplier</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">What Our Students Say</h2>
+      <p class="section-subtitle">
+        St. Mary's University graduates share their real exam success stories.
+      </p>
+    </div>
+
+    <div class="grid-3">
+      <div class="glass-card testimonial-card">
+        <p class="testimonial-text">
+          "The simulated exam console felt exactly like the real Ministry exam environment. The AI predictions showing my weak spots in Networking subnetting saved my grade!"
+        </p>
+        <div class="testimonial-user">
+          <div class="testimonial-avatar">YM</div>
+          <div class="testimonial-info">
+            <h4>Yonas Mekonnen</h4>
+            <p>Computer Science Graduate, 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card testimonial-card">
+        <p class="testimonial-text">
+          "I was struggling with SQL Joins and Normalization. The database recommendations mapped exactly what I needed to read. Passed with a 92% readiness index!"
+        </p>
+        <div class="testimonial-user">
+          <div class="testimonial-avatar">HT</div>
+          <div class="testimonial-info">
+            <h4>Hana Tadesse</h4>
+            <p>Software Engineering Graduate, 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card testimonial-card">
+        <p class="testimonial-text">
+          "Keeping up my 5-day streak and unlocking the 'Subject Master' badge turned a boring chore into an addictive challenge. Highly recommend to all SMU seniors!"
+        </p>
+        <div class="testimonial-user">
+          <div class="testimonial-avatar">AB</div>
+          <div class="testimonial-info">
+            <h4>Alazar Bekele</h4>
+            <p>Information Technology Graduate, 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="section" style="padding-bottom: 8rem;">
+    <div class="glass-card cta-banner">
+      <h2>Ready to Guarantee Your Graduation?</h2>
+      <p>Sign up now to take your first diagnostics exam, check your readiness levels, and start monitoring your study metrics today.</p>
+      <a href="/register" class="btn btn-primary" id="cta-primary-btn">
+        Register For Free <i class="fa-solid fa-rocket"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Toast Containers -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><i class="fa-solid fa-brain-circuit"></i> SMU Exit-Prep</h3>
+        <p style="margin-top: 1rem; max-width: 400px;">
+          An intelligent assessment and learning path forecasting application built to guarantee passing results for graduating seniors at St. Mary's University, Addis Ababa, Ethiopia.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#problem">Challenges</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About Exam</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>St. Mary's</h4>
+        <ul>
+          <li><a href="https://smuc.edu.et/" target="_blank">Official Website</a></li>
+          <li><a href="/login">Student Login</a></li>
+          <li><a href="/register">Student Signup</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 St. Mary's University Exit Exam AI-Prep System. All rights reserved.</p>
+      <p>Ethiopia Ministry of Education Aligned</p>
+    </div>
+  </footer>
+
+  <!-- JS Implementation -->
+  <script src="/js/auth.js"></script>
+  <script>
+    // Simple authentication hook for the homepage
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await checkSession();
+      const authNavItem = document.getElementById('auth-nav-item');
+      const heroBtn = document.getElementById('hero-primary-btn');
+      const ctaBtn = document.getElementById('cta-primary-btn');
+      
+      if (user) {
+        // Logged in user navigation
+        authNavItem.innerHTML = `<a href="/dashboard" class="btn btn-primary" style="padding: 0.5rem 1.25rem;"><i class="fa-solid fa-gauge"></i> Dashboard</a>`;
+        
+        if (heroBtn) {
+          heroBtn.href = '/dashboard';
+          heroBtn.innerHTML = `Go to Dashboard <i class="fa-solid fa-arrow-right"></i>`;
+        }
+        if (ctaBtn) {
+          ctaBtn.href = '/dashboard';
+          ctaBtn.innerHTML = `Go to Dashboard <i class="fa-solid fa-gauge"></i>`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

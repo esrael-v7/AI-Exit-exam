@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | SMU AI-Prep System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/auth.css">
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+
+  <a href="/" class="back-home">
+    <i class="fa-solid fa-arrow-left"></i> Back to Home
+  </a>
+
+  <div style="position: absolute; top: 2rem; right: 2rem; z-index: 100;">
+    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </div>
+
+  <div class="auth-container">
+    <div class="auth-grid-bg"></div>
+    <div class="glass-card auth-card animate-fade-in" style="max-width: 520px;">
+      <div class="auth-header">
+        <div class="auth-logo" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 120px; width: auto; border-radius: 8px; margin-bottom: 0.5rem; border: 2px solid var(--primary-neon); box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);">
+          <span style="font-size: 1.6rem;">SMU <span class="gradient-text">AI-Prep</span></span>
+        </div>
+        <h2>Create Account</h2>
+        <p>Register to unlock performance forecasting and mock exit exams</p>
+      </div>
+
+       <form id="register-form">
+        <div class="form-group">
+          <label for="fullname"><i class="fa-solid fa-user"></i> Full Name</label>
+          <input type="text" id="fullname" class="form-control" placeholder="e.g. Abebe Kebede" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+          <input type="email" id="email" class="form-control" placeholder="name@student.smuc.edu.et" required>
+        </div>
+
+        <div class="form-group">
+          <label for="department"><i class="fa-solid fa-graduation-cap"></i> Academic Department</label>
+          <select id="department" class="form-control" required>
+            <option value="" disabled selected>Select your department</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Marketing Management">Marketing Management</option>
+            <option value="Tourism & Hospitality">Tourism & Hospitality</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
+          <div class="password-input-wrapper">
+            <input type="password" id="password" class="form-control" placeholder="Minimum 6 characters" required minlength="6">
+            <button type="button" class="toggle-password-btn" id="toggle-password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+          Register Now <i class="fa-solid fa-user-plus"></i>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="/login">Log in here</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/js/auth.js"></script>
+  <script>
+    // Show/Hide password toggle
+    document.getElementById('toggle-password').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      const icon = this.querySelector('i');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    });
+
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const full_name = document.getElementById('fullname').value;
+      const email = document.getElementById('email').value;
+      const department = document.getElementById('department').value;
+      const password = document.getElementById('password').value;
+      
+      const success = await registerUser(full_name, email, password, department);
+      if (success) {
+        window.location.href = '/dashboard';
+      }
+    });
+  </script>
+</body>
+</html>

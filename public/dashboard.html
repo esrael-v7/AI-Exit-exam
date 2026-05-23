@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | SMU AI-Prep System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <script src="/js/theme.js"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 38px; width: auto; border-radius: 4px; border: 1px solid var(--primary-neon); box-shadow: 0 0 8px rgba(0, 242, 254, 0.25);">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/dashboard" class="active">Dashboard</a></li>
+      <li><a href="/exam">Mock Exam</a></li>
+      <li style="display: flex; align-items: center; justify-content: center;">
+        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme" style="width: 32px; height: 32px; font-size: 0.95rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </li>
+      <li>
+        <button onclick="handleLogout()" class="btn btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="dashboard-container">
+    
+    <!-- User Greetings Header -->
+    <div class="user-banner animate-fade-in">
+      <div>
+        <h1 id="user-greeting">Welcome back, Student!</h1>
+        <p id="user-subtext">Department of Computer Science &bull; St. Mary's University</p>
+      </div>
+      <div>
+        <a href="/exam" class="btn btn-primary">
+          <i class="fa-solid fa-graduation-cap"></i> Take Mock Exam
+        </a>
+      </div>
+    </div>
+
+    <!-- Metrics Row -->
+    <div class="metrics-row animate-fade-in" style="animation-delay: 0.1s;">
+      <div class="glass-card metric-card">
+        <div class="metric-card-icon">
+          <i class="fa-solid fa-gauge-high"></i>
+        </div>
+        <div class="metric-card-info">
+          <h3>Readiness Score</h3>
+          <div class="value" id="metric-readiness">0%</div>
+        </div>
+      </div>
+
+      <div class="glass-card metric-card">
+        <div class="metric-card-icon" style="color: var(--accent-purple); border-color: rgba(161,140,209,0.15);">
+          <i class="fa-solid fa-fire"></i>
+        </div>
+        <div class="metric-card-info">
+          <h3>Study Streak</h3>
+          <div class="value" id="metric-streak">0 Days</div>
+        </div>
+      </div>
+
+      <div class="glass-card metric-card">
+        <div class="metric-card-icon" style="color: var(--accent-green); border-color: rgba(0,255,135,0.15);">
+          <i class="fa-solid fa-clipboard-list"></i>
+        </div>
+        <div class="metric-card-info">
+          <h3>Exams Completed</h3>
+          <div class="value" id="metric-completed">0</div>
+        </div>
+      </div>
+
+      <div class="glass-card metric-card">
+        <div class="metric-card-icon" style="color: var(--accent-red); border-color: rgba(255,51,102,0.15);">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="metric-card-info">
+          <h3>Weak Subjects</h3>
+          <div class="value" id="metric-weak" style="font-size: 0.95rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; margin-top: 0.4rem; color: var(--accent-red);">None</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Assistant Advice Box -->
+    <div class="glass-card ai-assistant-card animate-fade-in" style="animation-delay: 0.15s;">
+      <div class="ai-header">
+        <h2><i class="fa-solid fa-sparkles"></i> AI Performance Prediction Advisor</h2>
+      </div>
+      <div class="ai-bubble">
+        <p id="ai-advisor-speech">Analyzing your academic database footprint... Take a mock exam to activate the AI advisory board.</p>
+      </div>
+    </div>
+
+    <!-- Main Dashboard Split Grid -->
+    <div class="dashboard-grid animate-fade-in" style="animation-delay: 0.2s;">
+      
+      <!-- Left Hand Side: Analytics & History -->
+      <div style="display: flex; flex-direction: column; gap: 2rem;">
+        
+        <!-- Chart Section -->
+        <div class="charts-grid">
+          <div class="glass-card chart-card">
+            <h3><i class="fa-solid fa-chart-radar"></i> Subject Mastery Index</h3>
+            <div class="chart-wrapper">
+              <canvas id="subjectChart"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-card chart-card">
+            <h3><i class="fa-solid fa-chart-line"></i> Weekly Study Hours</h3>
+            <div class="chart-wrapper">
+              <canvas id="hoursChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exam History Table -->
+        <div class="glass-card history-card">
+          <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Mock Exam Log</h3>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date Taken</th>
+                  <th>Topic</th>
+                  <th>Score Received</th>
+                  <th>Readiness Level</th>
+                </tr>
+              </thead>
+              <tbody id="exam-log-body">
+                <tr>
+                  <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                    No mock exams logged yet. Click "Take Mock Exam" to establish your baseline.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Hand Side: Checklists & Badges -->
+      <div style="display: flex; flex-direction: column; gap: 2rem;">
+        
+        <!-- Smart Study Topics Recommendation -->
+        <div class="glass-card topics-panel">
+          <h3><i class="fa-solid fa-list-check"></i> Target Study Topics</h3>
+          <div class="topics-list" id="recommended-topics-list">
+            <div class="topic-tag">
+              <i class="fa-solid fa-circle-question"></i>
+              <span>No recommended topics. Take an exam to diagnose focus areas.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badges / Gamification Achievements -->
+        <div class="glass-card badges-panel">
+          <h3><i class="fa-solid fa-trophy"></i> Unlocked Achievements</h3>
+          <div id="badges-list-container">
+            <!-- Badges rendered dynamically -->
+            <div class="badge-item locked">
+              <div class="badge-icon-box">🚀</div>
+              <div class="badge-info">
+                <h4>First Step</h4>
+                <p>Complete your first comprehensive mock exam.</p>
+              </div>
+            </div>
+            <div class="badge-item locked">
+              <div class="badge-icon-box">🏆</div>
+              <div class="badge-info">
+                <h4>Subject Master</h4>
+                <p>Score 85% or higher on any subject topic.</p>
+              </div>
+            </div>
+            <div class="badge-item locked">
+              <div class="badge-icon-box">🔥</div>
+              <div class="badge-info">
+                <h4>Consistent Scholar</h4>
+                <p>Maintain a study streak of 3 or more consecutive days.</p>
+              </div>
+            </div>
+            <div class="badge-item locked">
+              <div class="badge-icon-box">👑</div>
+              <div class="badge-info">
+                <h4>Exit Exam Ready</h4>
+                <p>Attain a calculated Readiness Score of 80% or more.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Interactive Gemini AI Chatbot Widget -->
+  <div class="chatbot-container">
+    <!-- Trigger Floating Bubble Button -->
+    <button class="chatbot-trigger" id="chatbot-trigger" onclick="toggleChatbot()" title="Ask AI Study Assistant">
+      <i class="fa-solid fa-sparkles"></i>
+      <span class="pulse-indicator"></span>
+    </button>
+
+    <!-- Floating Chat Window Card -->
+    <div class="glass-card chatbot-window" id="chatbot-window">
+      <div class="chatbot-header">
+        <div class="chatbot-header-title">
+          <i class="fa-solid fa-robot"></i>
+          <div>
+            <h4>SMU AI Study Assistant</h4>
+            <span class="model-badge"><span class="status-dot-active"></span> Powered by Gemini 1.5</span>
+          </div>
+        </div>
+        <button class="chatbot-close-btn" onclick="toggleChatbot()">&times;</button>
+      </div>
+
+      <!-- Scrollable Message Board -->
+      <div class="chatbot-messages" id="chatbot-messages">
+        <div class="chat-message ai">
+          <div class="chat-bubble">
+            Hello! I am your **Gemini AI Study Assistant** for St. Mary's University. I have live, context-aware knowledge of your mock exit exam scores and target subjects! How can I help you study today?
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Action Pills -->
+      <div class="chatbot-suggestions">
+        <button class="suggestion-pill" onclick="sendSuggestedPrompt('Analyze my exit exam readiness')">
+          📈 Analyze Readiness
+        </button>
+        <button class="suggestion-pill" onclick="sendSuggestedPrompt('Give me SQL Outer Join tips')">
+          🔑 SQL Join Tips
+        </button>
+        <button class="suggestion-pill" onclick="sendSuggestedPrompt('Explain Operating Systems virtual memory paging')">
+          🧠 Virtual Memory Paging
+        </button>
+        <button class="suggestion-pill" onclick="sendSuggestedPrompt('Draft a 7-day study plan')">
+          📅 7-Day Study Plan
+        </button>
+      </div>
+
+      <!-- Input Footer Form -->
+      <form class="chatbot-footer" id="chatbot-form" onsubmit="handleChatSubmit(event)">
+        <input type="text" id="chatbot-input" placeholder="Ask a study question or concept..." autocomplete="off">
+        <button type="submit" class="chatbot-send-btn">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Client JavaScript integration -->
+  <script src="/js/auth.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

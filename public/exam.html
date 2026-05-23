@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Exit Exam | SMU AI-Prep System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/exam.css">
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 38px; width: auto; border-radius: 4px; border: 1px solid var(--primary-neon); box-shadow: 0 0 8px rgba(0, 242, 254, 0.25);">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/exam" class="active">Mock Exam</a></li>
+      <li style="display: flex; align-items: center; justify-content: center;">
+        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme" style="width: 32px; height: 32px; font-size: 0.95rem;">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </li>
+      <li>
+        <button onclick="handleLogout()" class="btn btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Exam Console Wrapper -->
+  <main class="exam-container">
+    
+    <!-- 1. Exam Configuration Setup Card -->
+    <div class="glass-card setup-card animate-fade-in" id="setup-panel" style="padding: 3rem 2.5rem;">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <i class="fa-solid fa-sliders" style="font-size: 3.5rem; color: var(--primary-neon); text-shadow: var(--glow-cyan); margin-bottom: 1rem;"></i>
+        <h2>Configure Your Prep Challenge</h2>
+        <p style="color: var(--text-secondary); max-width: 550px; margin: 0.5rem auto 0 auto;">Choose how many questions you wish to be tested on. The engine will dynamically fetch random, mixed questions from all subjects aligned with your academic department.</p>
+      </div>
+
+      <div class="setup-grid">
+        <div class="setup-option active" onclick="selectExamSize(5, this)">
+          <div class="option-title">5 Questions</div>
+          <p>10 minutes. Perfect for a quick daily sprint or diagnostic check.</p>
+        </div>
+        <div class="setup-option" onclick="selectExamSize(10, this)">
+          <div class="option-title">10 Questions</div>
+          <p>20 minutes. Great for rapid subject assessment and review.</p>
+        </div>
+        <div class="setup-option" onclick="selectExamSize(15, this)">
+          <div class="option-title">15 Questions</div>
+          <p>30 minutes. Standard practice layout for focused preparation.</p>
+        </div>
+        <div class="setup-option" onclick="selectExamSize(25, this)">
+          <div class="option-title">25 Questions</div>
+          <p>50 minutes. Full comprehensive simulation of the National Exit Exam.</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <button class="btn btn-primary" onclick="triggerStartExam()" style="padding: 1rem 3rem; font-size: 1.1rem; box-shadow: var(--glow-cyan); border-radius: 8px;">
+          Begin Practice Exam <i class="fa-solid fa-bolt"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. Active Exam Console Wrapper -->
+    <div id="exam-active-panel" style="display: none; flex-direction: column; gap: 1.5rem; width: 100%;">
+      <!-- Exam Header -->
+      <div class="glass-card exam-header">
+        <div>
+          <span class="exam-subject-tag" id="current-subject-tag">Subject Baseline</span>
+        </div>
+        <div class="exam-timer-box" id="exam-timer">
+          <i class="fa-regular fa-clock"></i>
+          <span id="timer-text">30:00</span>
+        </div>
+      </div>
+
+      <!-- Active Question Card -->
+      <div class="glass-card question-card" id="question-card-wrapper">
+        <div id="loading-questions" style="text-align: center; padding: 3rem 0; color: var(--text-secondary);">
+          <i class="fa-solid fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--primary-neon); margin-bottom: 1rem;"></i>
+          <p>Syncing questions from St. Mary's academic database...</p>
+        </div>
+
+        <div id="question-content" style="display: none;">
+          <div class="question-number" id="question-number-text">Question 1 of 25</div>
+          <div class="question-text" id="question-text-body">Loading question...</div>
+          
+          <div class="options-list" id="options-container">
+            <div class="option-item" onclick="selectOption('A')">
+              <div class="option-letter">A</div>
+              <div class="option-text" id="option-a-text">Option A</div>
+            </div>
+            <div class="option-item" onclick="selectOption('B')">
+              <div class="option-letter">B</div>
+              <div class="option-text" id="option-b-text">Option B</div>
+            </div>
+            <div class="option-item" onclick="selectOption('C')">
+              <div class="option-letter">C</div>
+              <div class="option-text" id="option-c-text">Option C</div>
+            </div>
+            <div class="option-item" onclick="selectOption('D')">
+              <div class="option-letter">D</div>
+              <div class="option-text" id="option-d-text">Option D</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Bar -->
+      <div class="exam-nav">
+        <button class="btn btn-secondary" id="prev-btn" onclick="prevQuestion()" disabled>
+          <i class="fa-solid fa-chevron-left"></i> Previous
+        </button>
+        
+        <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">
+          Next <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <button class="btn btn-primary" id="submit-btn" onclick="showSubmitModal()" style="display: none; background: linear-gradient(135deg, var(--accent-green), var(--primary-blue)); border: none; color: var(--bg-darker);">
+          Submit Exam <i class="fa-solid fa-circle-check"></i>
+        </button>
+      </div>
+
+      <!-- Bottom Progress Navigation Nodes -->
+      <div class="glass-card progress-tracker-panel">
+        <h4>Exam Navigation Tracker</h4>
+        <div class="progress-grid" id="progress-grid-container">
+          <!-- Generates progress nodes dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Post-Exam Results Panel (Inline) -->
+    <div id="results-panel" style="display: none; flex-direction: column; gap: 2rem; width: 100%;">
+      <div class="glass-card results-header animate-fade-in" style="text-align: center; padding: 3rem 2rem;">
+        <i class="fa-solid fa-graduation-cap" style="font-size: 3.5rem; color: var(--primary-neon); text-shadow: var(--glow-cyan); margin-bottom: 1.5rem;"></i>
+        <h2>Exam Completed & Graded!</h2>
+        <p style="color: var(--text-secondary);">Your mock exit exam performance has been logged and analyzed.</p>
+        
+        <div class="metrics-grid" style="margin-top: 2.5rem;">
+          <div class="glass-card metric-card" style="padding: 1.5rem; text-align: center;">
+            <div style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 600;">Overall Score</div>
+            <div id="result-score" style="font-size: 2.5rem; font-weight: 800; color: var(--primary-neon); font-family: var(--font-display); text-shadow: var(--glow-cyan);">0%</div>
+          </div>
+          <div class="glass-card metric-card" style="padding: 1.5rem; text-align: center;">
+            <div style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 600;">Correct Answers</div>
+            <div id="result-count" style="font-size: 2.5rem; font-weight: 800; color: var(--accent-green); font-family: var(--font-display); text-shadow: var(--glow-green);">0/0</div>
+          </div>
+          <div class="glass-card metric-card" style="padding: 1.5rem; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem; font-weight: 600;">Readiness Rating</div>
+            <div id="result-readiness" style="font-size: 1.1rem; font-weight: 700; color: #fff; text-transform: uppercase; border-radius: 4px; padding: 0.4rem 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">Determining...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Powered Recommendation Card -->
+      <div class="glass-card ai-recommendation-card animate-fade-in" style="animation-delay: 0.1s; padding: 2.5rem; border: 1px solid rgba(0, 242, 254, 0.2); position: relative; overflow: hidden; border-radius: 16px;">
+        <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--primary-neon), var(--accent-purple));"></div>
+        <h3 style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <i class="fa-solid fa-sparkles" style="color: var(--primary-neon); text-shadow: var(--glow-cyan);"></i>
+          <span>AI Coach Study Guide & Recommendations</span>
+        </h3>
+        
+        <div id="ai-loading" style="text-align: center; padding: 3rem 0;">
+          <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 3rem; color: var(--primary-neon); margin-bottom: 1.5rem; text-shadow: var(--glow-cyan);"></i>
+          <p style="color: var(--text-secondary);">Querying AI Recommendation engine for your specific subject footprint...</p>
+        </div>
+        
+        <div id="ai-recommendation-content" class="ai-recommendation-markdown" style="display: none; line-height: 1.7; font-size: 1rem; color: var(--text-primary);">
+          <!-- Dynamic markdown content rendered here -->
+        </div>
+      </div>
+
+      <!-- Question Review Panel -->
+      <div class="glass-card review-panel animate-fade-in" style="animation-delay: 0.15s; padding: 2.5rem; border-radius: 16px;">
+        <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-clipboard-question" style="color: var(--primary-neon);"></i> <span>Question Review Board</span></h3>
+        <div class="review-list" id="question-review-container" style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <!-- Generates question list with user selection, correct answer, and correctness state -->
+        </div>
+      </div>
+
+      <div style="text-align: center; margin: 1rem 0 3rem 0;">
+        <a href="/dashboard" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem; box-shadow: var(--glow-cyan); border-radius: 8px;">
+          Return to Dashboard <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Submit Confirmation Modal Dialog -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="glass-card modal-content">
+      <div class="modal-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+      <h3>Submit Your Exam?</h3>
+      <p>Confirming this action will submit your responses to the evaluation engine. Your score will update the student dashboard analytics, calculate your readiness level, and trigger AI study advice.</p>
+      <div class="modal-buttons">
+        <button class="btn btn-secondary" onclick="hideSubmitModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitExam()" style="background: linear-gradient(135deg, var(--accent-green), var(--primary-blue)); border: none; color: var(--bg-darker);">Confirm & Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Client JavaScript integration -->
+  <script src="/js/auth.js"></script>
+  <script src="/js/exam.js"></script>
+</body>
+</html>
