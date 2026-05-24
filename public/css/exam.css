@@ -402,3 +402,76 @@
 :root[data-theme="light"] .ai-recommendation-markdown strong {
   color: var(--text-primary);
 }
+
+@media (max-width: 768px) {
+  .exam-container {
+    padding: 2rem 1rem 3rem 1rem !important;
+  }
+  
+  .setup-card {
+    padding: 2rem 1.25rem !important;
+  }
+  
+  .question-card {
+    padding: 1.5rem 1.25rem !important;
+  }
+  
+  .question-text {
+    font-size: 1.15rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .option-item {
+    padding: 0.85rem 1.1rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .setup-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  
+  .setup-option {
+    padding: 1.1rem !important;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  
+  .review-item {
+    padding: 1.1rem !important;
+  }
+  
+  .review-options-compare {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .exam-nav {
+    flex-direction: column-reverse !important;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .exam-nav .btn {
+    width: 100%;
+  }
+  
+  .modal-content {
+    padding: 2rem 1.25rem !important;
+  }
+  
+  .modal-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .modal-buttons .btn {
+    width: 100%;
+  }
+}

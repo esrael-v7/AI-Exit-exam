@@ -806,3 +806,97 @@ footer {
   border-color: var(--primary-neon);
   box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
 }
+
+/* ============================================================================
+   RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px; /* slightly smaller base size on tablet/mobile to prevent overflow */
+  }
+  
+  .navbar {
+    position: sticky !important; /* switch from fixed to sticky for better layout height handling */
+    top: 0;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem !important;
+    height: auto;
+  }
+  
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 1.25rem !important;
+    flex-wrap: wrap;
+  }
+  
+  .nav-links li {
+    display: inline-flex;
+  }
+  
+  .hero-section {
+    padding: 4rem 1rem 2rem 1rem !important;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section {
+    padding: 3rem 1rem !important;
+  }
+  
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+  
+  .cta-banner {
+    padding: 2.5rem 1.5rem !important;
+  }
+  
+  footer {
+    padding: 3rem 1.5rem 1.5rem 1.5rem !important;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+  }
+  
+  .toast-container {
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
+  
+  .toast {
+    min-width: 0;
+    width: 100%;
+  }
+}
