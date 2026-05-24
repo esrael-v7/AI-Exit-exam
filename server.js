@@ -51,7 +51,7 @@ app.get('*', (req, res) => {
 });
 
 // Start Express Server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`================================================================`);
   console.log(`[Server] AI Exit Exam Prep Server running on port ${PORT}`);
   console.log(`[Server] Local URL: http://localhost:${PORT}`);
