@@ -11,10 +11,21 @@
 </head>
 <body>
 
+  <!-- Animated Gradient Background -->
+  <div class="animated-gradient-bg"></div>
+
+  <!-- Floating animated background blobs -->
+  <div class="glass-bg-blobs">
+    <div class="glowing-blob blob-cyan"></div>
+    <div class="glowing-blob blob-purple"></div>
+    <div class="glowing-blob blob-blue"></div>
+    <div class="glowing-blob blob-green"></div>
+  </div>
+
   <!-- Navigation Bar -->
   <nav class="navbar">
     <a href="/" class="nav-logo">
-      <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 38px; width: auto; border-radius: 4px; border: 1px solid var(--primary-neon); box-shadow: 0 0 8px rgba(0, 242, 254, 0.25);">
+      <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 38px; width: 38px; object-fit: cover; border-radius: 50%; border: 1.5px solid var(--primary-neon); box-shadow: 0 0 10px rgba(0, 242, 254, 0.35);">
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="/" class="active">Home</a></li>
@@ -22,12 +33,12 @@
       <li><a href="#features">Features</a></li>
       <li><a href="#about">About Exit Exam</a></li>
       <li style="display: flex; align-items: center; justify-content: center;">
-        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme" style="width: 32px; height: 32px; font-size: 0.95rem;">
+        <button id="theme-toggle" class="theme-toggle-btn magnetic-btn" title="Toggle Theme" style="width: 32px; height: 32px; font-size: 0.95rem;">
           <i class="fa-solid fa-moon"></i>
         </button>
       </li>
       <li id="auth-nav-item">
-        <a href="/login" class="btn btn-secondary" style="padding: 0.5rem 1.25rem;">Login</a>
+        <a href="/login" class="btn btn-secondary magnetic-btn" style="padding: 0.5rem 1.25rem;">Login</a>
       </li>
     </ul>
   </nav>
@@ -36,29 +47,39 @@
   <header class="hero-section">
     <div class="hero-grid"></div>
     <div class="hero-content animate-fade-in">
-      <div class="hero-badge">
-        <i class="fa-solid fa-sparkles"></i> AI-Powered Performance Forecasting
+      
+      <!-- Left Column: Content -->
+      <div class="hero-text-block">
+        <div class="hero-badge">
+          <i class="fa-solid fa-sparkles"></i> AI-Powered Performance Forecasting
+        </div>
+        <h1 class="hero-title">
+          Master Your Exit Exam with <br>
+          <span class="gradient-text-neon">Intelligent Analytics</span>
+        </h1>
+        <p class="hero-subtitle">
+          Empowering St. Mary's University students with personalized study pathways, real-time readiness predictions, and gamified study milestones. Prepare smarter, conquer stress, and guarantee your academic success.
+        </p>
+        <div class="hero-actions">
+          <a href="/register" class="btn btn-primary magnetic-btn" id="hero-primary-btn">
+            Get Started Free <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#about" class="btn btn-secondary magnetic-btn">
+            Learn More
+          </a>
+        </div>
       </div>
-      <h1 class="hero-title">
-        Master Your Exit Exam with <br>
-        <span class="gradient-text-neon">Intelligent Analytics</span>
-      </h1>
-      <p class="hero-subtitle">
-        Empowering St. Mary's University students with personalized study pathways, real-time readiness predictions, and gamified study milestones. Prepare smarter, conquer stress, and guarantee your academic success.
-      </p>
-      <div class="hero-actions">
-        <a href="/register" class="btn btn-primary" id="hero-primary-btn">
-          Get Started Free <i class="fa-solid fa-arrow-right"></i>
-        </a>
-        <a href="#about" class="btn btn-secondary">
-          Learn More
-        </a>
+
+      <!-- Right Column: Interactive Illustration -->
+      <div class="hero-image-block tilt-card">
+        <img src="/images/hero-illustration.png" alt="SMU AI-Prep Success Engine" class="hero-illustration-img">
       </div>
+
     </div>
   </header>
 
   <!-- Problem Statement Section -->
-  <section class="section" id="problem">
+  <section class="section reveal-slide-up" id="problem">
     <div class="section-header">
       <h2 class="section-title">The Challenge</h2>
       <p class="section-subtitle">
@@ -67,7 +88,7 @@
     </div>
     
     <div class="grid-3">
-      <div class="glass-card feature-card">
+      <div class="glass-card feature-card tilt-card">
         <div class="feature-icon" style="background: rgba(255, 51, 102, 0.08); border-color: rgba(255, 51, 102, 0.2); color: var(--accent-red);">
           <i class="fa-solid fa-battery-empty"></i>
         </div>
@@ -75,7 +96,7 @@
         <p>Staring at flat textbooks and dry worksheets makes studying exhausting, leading to early burnout and poor memory retention.</p>
       </div>
       
-      <div class="glass-card feature-card">
+      <div class="glass-card feature-card tilt-card">
         <div class="feature-icon" style="background: rgba(161, 140, 209, 0.08); border-color: rgba(161, 140, 209, 0.2); color: var(--accent-purple);">
           <i class="fa-solid fa-chart-line-down"></i>
         </div>
@@ -83,7 +104,7 @@
         <p>Students study blindly without knowing their current readiness score, making it impossible to identify which subjects need focus.</p>
       </div>
       
-      <div class="glass-card feature-card">
+      <div class="glass-card feature-card tilt-card">
         <div class="feature-icon" style="background: rgba(0, 242, 254, 0.08); border-color: rgba(0, 242, 254, 0.2); color: var(--primary-neon);">
           <i class="fa-solid fa-puzzle-piece"></i>
         </div>
@@ -94,7 +115,7 @@
   </section>
 
   <!-- Features Section -->
-  <section class="section" id="features">
+  <section class="section reveal-slide-up" id="features">
     <div class="section-header">
       <h2 class="section-title">AI-Powered Solutions</h2>
       <p class="section-subtitle">
@@ -179,13 +200,17 @@
         </div>
       </div>
 
-      <!-- Statistics Showcase -->
-      <div class="glass-card cta-banner" style="padding: 2.5rem; text-align: left; align-items: flex-start; gap: 1rem;">
-        <h3 style="color: var(--primary-neon); margin-bottom: 1rem;"><i class="fa-solid fa-chart-simple"></i> St. Mary's Prep Metrics</h3>
+      <!-- Statistics Showcase & Illustration -->
+      <div class="glass-card cta-banner tilt-card" style="padding: 2rem; text-align: left; align-items: stretch; gap: 1.5rem; display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
+          <img src="/images/ai-coach-illustration.png" alt="SMU AI Performance Coach" style="width: 100%; max-width: 320px; height: auto; border-radius: 16px; border: 1.5px solid var(--accent-purple); box-shadow: 0 5px 25px rgba(161, 140, 209, 0.35); animation: breathingSVG 5s infinite ease-in-out;">
+        </div>
         
-        <div style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
+        <h3 style="color: var(--primary-neon); margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-chart-simple"></i> Prep Metrics</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
           <div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.4rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.2rem;">
               <span>Average Passing Rate (Traditional)</span>
               <span style="color: var(--accent-red); font-weight: 700;">64%</span>
             </div>
@@ -195,7 +220,7 @@
           </div>
 
           <div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.4rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.2rem;">
               <span>Average Passing Rate (With AI-Prep Platform)</span>
               <span style="color: var(--accent-green); font-weight: 700;">94%</span>
             </div>
@@ -214,26 +239,26 @@
     <!-- Quick Stats Banner -->
     <div class="glass-card stats-banner">
       <div class="stat-item">
-        <div class="stat-value">1,200+</div>
+        <div class="stat-value" id="stat-active-students">1,200+</div>
         <div class="stat-label">SMU Students Active</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">25,000+</div>
+        <div class="stat-value" id="stat-questions-answered">25,000+</div>
         <div class="stat-label">Practice Questions Answered</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">94.2%</div>
+        <div class="stat-value" id="stat-pass-rate">94.2%</div>
         <div class="stat-label">Exit Exam Pass Rate</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">3.8x</div>
+        <div class="stat-value" id="stat-engagement">3.8x</div>
         <div class="stat-label">Engagement Multiplier</div>
       </div>
     </div>
   </section>
 
   <!-- Testimonials Section -->
-  <section class="section">
+  <section class="section reveal-slide-up">
     <div class="section-header">
       <h2 class="section-title">What Our Students Say</h2>
       <p class="section-subtitle">
@@ -242,7 +267,7 @@
     </div>
 
     <div class="grid-3">
-      <div class="glass-card testimonial-card">
+      <div class="glass-card testimonial-card tilt-card">
         <p class="testimonial-text">
           "The simulated exam console felt exactly like the real Ministry exam environment. The AI predictions showing my weak spots in Networking subnetting saved my grade!"
         </p>
@@ -255,7 +280,7 @@
         </div>
       </div>
 
-      <div class="glass-card testimonial-card">
+      <div class="glass-card testimonial-card tilt-card">
         <p class="testimonial-text">
           "I was struggling with SQL Joins and Normalization. The database recommendations mapped exactly what I needed to read. Passed with a 92% readiness index!"
         </p>
@@ -268,7 +293,7 @@
         </div>
       </div>
 
-      <div class="glass-card testimonial-card">
+      <div class="glass-card testimonial-card tilt-card">
         <p class="testimonial-text">
           "Keeping up my 5-day streak and unlocking the 'Subject Master' badge turned a boring chore into an addictive challenge. Highly recommend to all SMU seniors!"
         </p>
@@ -284,11 +309,11 @@
   </section>
 
   <!-- CTA Banner Section -->
-  <section class="section" style="padding-bottom: 8rem;">
+  <section class="section reveal-scale" style="padding-bottom: 8rem;">
     <div class="glass-card cta-banner">
       <h2>Ready to Guarantee Your Graduation?</h2>
       <p>Sign up now to take your first diagnostics exam, check your readiness levels, and start monitoring your study metrics today.</p>
-      <a href="/register" class="btn btn-primary" id="cta-primary-btn">
+      <a href="/register" class="btn btn-primary magnetic-btn" id="cta-primary-btn">
         Register For Free <i class="fa-solid fa-rocket"></i>
       </a>
     </div>
@@ -331,6 +356,8 @@
 
   <!-- JS Implementation -->
   <script src="/js/auth.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/background-animation.js"></script>
   <script>
     // Simple authentication hook for the homepage
     document.addEventListener('DOMContentLoaded', async () => {
@@ -338,11 +365,11 @@
       const authNavItem = document.getElementById('auth-nav-item');
       const heroBtn = document.getElementById('hero-primary-btn');
       const ctaBtn = document.getElementById('cta-primary-btn');
-      
+
       if (user) {
         // Logged in user navigation
-        authNavItem.innerHTML = `<a href="/dashboard" class="btn btn-primary" style="padding: 0.5rem 1.25rem;"><i class="fa-solid fa-gauge"></i> Dashboard</a>`;
-        
+        authNavItem.innerHTML = `<a href="/dashboard" class="btn btn-primary magnetic-btn" style="padding: 0.5rem 1.25rem;"><i class="fa-solid fa-gauge"></i> Dashboard</a>`;
+
         if (heroBtn) {
           heroBtn.href = '/dashboard';
           heroBtn.innerHTML = `Go to Dashboard <i class="fa-solid fa-arrow-right"></i>`;
@@ -351,6 +378,20 @@
           ctaBtn.href = '/dashboard';
           ctaBtn.innerHTML = `Go to Dashboard <i class="fa-solid fa-gauge"></i>`;
         }
+      }
+
+      // Fetch and display global statistics
+      try {
+        const statsRes = await fetch('/api/dashboard/global-stats');
+        const stats = await statsRes.json();
+
+        // Update stats display with real data
+        document.getElementById('stat-active-students').textContent = stats.active_students.toLocaleString();
+        document.getElementById('stat-questions-answered').textContent = stats.questions_answered.toLocaleString();
+        document.getElementById('stat-pass-rate').textContent = stats.pass_rate + '%';
+        document.getElementById('stat-engagement').textContent = stats.engagement_multiplier + 'x';
+      } catch (err) {
+        console.error('Error fetching global stats:', err);
       }
     });
   </script>

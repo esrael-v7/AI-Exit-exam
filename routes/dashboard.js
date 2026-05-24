@@ -351,4 +351,61 @@ router.get('/stats', auth, async (req, res) => {
   }
 });
 
+// @route   GET /api/dashboard/global-stats
+// @desc    Get global system statistics
+// @access  Public
+router.get('/global-stats', async (req, res) => {
+  try {
+    // 1. Total active SMU students (unique users)
+    const activeStudentsRes = await db.query('SELECT COUNT(DISTINCT id) as total FROM users');
+    const activeStudents = activeStudentsRes.rows[0].total;
+
+    // 2. Total practice questions answered
+    const questionsAnsweredRes = await db.query(
+      `SELECT COUNT(*) as total FROM results WHERE subject != 'Comprehensive'`
+    );
+    const questionsAnswered = questionsAnsweredRes.rows[0].total;
+
+    // 3. Exit exam pass rate (% of students with score >= 75)
+    const passRateRes = await db.query(
+      `SELECT
+        COUNT(DISTINCT user_id) as total_students,
+        COUNT(DISTINCT CASE WHEN score >= 75 THEN user_id END) as passed_students
+       FROM results
+       WHERE subject = 'Comprehensive'`
+    );
+    const passRateData = passRateRes.rows[0];
+    const exitExamPassRate = passRateData.total_students > 0
+      ? Math.round((passRateData.passed_students / passRateData.total_students) * 100)
+      : 0;
+
+    // 4. Engagement multiplier (average exams taken per student * quality score)
+    const engagementRes = await db.query(
+      `SELECT
+        AVG(exam_count) as avg_exams,
+        AVG(avg_score) as avg_score
+       FROM (
+         SELECT user_id, COUNT(*) as exam_count, AVG(score) as avg_score
+         FROM results
+         WHERE subject = 'Comprehensive'
+         GROUP BY user_id
+       ) as user_stats`
+    );
+    const engagementData = engagementRes.rows[0];
+    const engagementMultiplier = engagementData.avg_exams && engagementData.avg_score
+      ? (parseFloat(engagementData.avg_exams) * (parseFloat(engagementData.avg_score) / 100)).toFixed(2)
+      : 0;
+
+    res.json({
+      active_students: activeStudents,
+      questions_answered: questionsAnswered,
+      pass_rate: exitExamPassRate,
+      engagement_multiplier: engagementMultiplier
+    });
+  } catch (err) {
+    console.error('Error fetching global stats:', err.message);
+    res.status(500).json({ error: 'Server error while fetching global statistics.' });
+  }
+});
+
 module.exports = router;

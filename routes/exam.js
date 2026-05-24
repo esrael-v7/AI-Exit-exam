@@ -16,30 +16,17 @@ const departmentSubjects = {
 router.get('/questions', auth, async (req, res) => {
   try {
     const userDept = req.user.department || 'Computer Science';
-    const subjects = departmentSubjects[userDept] || departmentSubjects['Computer Science'];
-    
+
     // Parse query parameter limit (default 25)
     const limit = parseInt(req.query.limit) || 25;
-    const subLimit = Math.ceil(limit / 5);
-    
-    let examQuestions = [];
 
-    // Query subLimit random questions for each subject
-    for (const subject of subjects) {
-      const result = await db.query(
-        'SELECT id, question, option_a, option_b, option_c, option_d, subject FROM questions WHERE department = $1 AND subject = $2 ORDER BY RANDOM() LIMIT $3',
-        [userDept, subject, subLimit]
-      );
-      examQuestions = examQuestions.concat(result.rows);
-    }
+    // Fetch random questions directly without subject-based splitting
+    const result = await db.query(
+      'SELECT id, question, option_a, option_b, option_c, option_d, subject FROM questions WHERE department = $1 ORDER BY RANDOM() LIMIT $2',
+      [userDept, limit]
+    );
 
-    // Shuffle the final list so subjects are mixed
-    examQuestions.sort(() => Math.random() - 0.5);
-
-    // Slice to the requested limit
-    examQuestions = examQuestions.slice(0, limit);
-
-    res.json({ questions: examQuestions });
+    res.json({ questions: result.rows });
   } catch (err) {
     console.error('Error fetching questions:', err.message);
     res.status(500).json({ error: 'Server error while fetching questions.' });

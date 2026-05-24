@@ -13,22 +13,33 @@
 </head>
 <body>
 
+  <!-- Animated Gradient Background -->
+  <div class="animated-gradient-bg"></div>
+
+  <!-- Floating animated background blobs -->
+  <div class="glass-bg-blobs">
+    <div class="glowing-blob blob-cyan"></div>
+    <div class="glowing-blob blob-purple"></div>
+    <div class="glowing-blob blob-blue"></div>
+    <div class="glowing-blob blob-green"></div>
+  </div>
+
   <!-- Navigation Bar -->
   <nav class="navbar">
     <a href="/" class="nav-logo">
-      <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 38px; width: auto; border-radius: 4px; border: 1px solid var(--primary-neon); box-shadow: 0 0 8px rgba(0, 242, 254, 0.25);">
+      <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 38px; width: 38px; object-fit: cover; border-radius: 50%; border: 1.5px solid var(--primary-neon); box-shadow: 0 0 10px rgba(0, 242, 254, 0.35);">
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
       <li><a href="/dashboard" class="active">Dashboard</a></li>
       <li><a href="/exam">Mock Exam</a></li>
       <li style="display: flex; align-items: center; justify-content: center;">
-        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme" style="width: 32px; height: 32px; font-size: 0.95rem;">
+        <button id="theme-toggle" class="theme-toggle-btn magnetic-btn" title="Toggle Theme" style="width: 32px; height: 32px; font-size: 0.95rem;">
           <i class="fa-solid fa-moon"></i>
         </button>
       </li>
       <li>
-        <button onclick="handleLogout()" class="btn btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+        <button onclick="handleLogout()" class="btn btn-secondary magnetic-btn" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
           <i class="fa-solid fa-right-from-bracket"></i> Logout
         </button>
       </li>
@@ -44,7 +55,7 @@
         <p id="user-subtext">Department of Computer Science &bull; St. Mary's University</p>
       </div>
       <div>
-        <a href="/exam" class="btn btn-primary">
+        <a href="/exam" class="btn btn-primary magnetic-btn">
           <i class="fa-solid fa-graduation-cap"></i> Take Mock Exam
         </a>
       </div>
@@ -52,7 +63,7 @@
 
     <!-- Metrics Row -->
     <div class="metrics-row animate-fade-in" style="animation-delay: 0.1s;">
-      <div class="glass-card metric-card">
+      <div class="glass-card metric-card tilt-card">
         <div class="metric-card-icon">
           <i class="fa-solid fa-gauge-high"></i>
         </div>
@@ -62,7 +73,7 @@
         </div>
       </div>
 
-      <div class="glass-card metric-card">
+      <div class="glass-card metric-card tilt-card">
         <div class="metric-card-icon" style="color: var(--accent-purple); border-color: rgba(161,140,209,0.15);">
           <i class="fa-solid fa-fire"></i>
         </div>
@@ -72,7 +83,7 @@
         </div>
       </div>
 
-      <div class="glass-card metric-card">
+      <div class="glass-card metric-card tilt-card">
         <div class="metric-card-icon" style="color: var(--accent-green); border-color: rgba(0,255,135,0.15);">
           <i class="fa-solid fa-clipboard-list"></i>
         </div>
@@ -82,7 +93,7 @@
         </div>
       </div>
 
-      <div class="glass-card metric-card">
+      <div class="glass-card metric-card tilt-card">
         <div class="metric-card-icon" style="color: var(--accent-red); border-color: rgba(255,51,102,0.15);">
           <i class="fa-solid fa-triangle-exclamation"></i>
         </div>
@@ -94,7 +105,7 @@
     </div>
 
     <!-- AI Assistant Advice Box -->
-    <div class="glass-card ai-assistant-card animate-fade-in" style="animation-delay: 0.15s;">
+    <div class="glass-card ai-assistant-card tilt-card animate-fade-in" style="animation-delay: 0.15s;">
       <div class="ai-header">
         <h2><i class="fa-solid fa-sparkles"></i> AI Performance Prediction Advisor</h2>
       </div>
@@ -156,7 +167,7 @@
       <div style="display: flex; flex-direction: column; gap: 2rem;">
         
         <!-- Smart Study Topics Recommendation -->
-        <div class="glass-card topics-panel">
+        <div class="glass-card topics-panel reveal-slide-up">
           <h3><i class="fa-solid fa-list-check"></i> Target Study Topics</h3>
           <div class="topics-list" id="recommended-topics-list">
             <div class="topic-tag">
@@ -167,32 +178,32 @@
         </div>
 
         <!-- Badges / Gamification Achievements -->
-        <div class="glass-card badges-panel">
+        <div class="glass-card badges-panel reveal-slide-up" style="animation-delay: 0.1s;">
           <h3><i class="fa-solid fa-trophy"></i> Unlocked Achievements</h3>
           <div id="badges-list-container">
             <!-- Badges rendered dynamically -->
-            <div class="badge-item locked">
+            <div class="badge-item locked tilt-card">
               <div class="badge-icon-box">🚀</div>
               <div class="badge-info">
                 <h4>First Step</h4>
                 <p>Complete your first comprehensive mock exam.</p>
               </div>
             </div>
-            <div class="badge-item locked">
+            <div class="badge-item locked tilt-card">
               <div class="badge-icon-box">🏆</div>
               <div class="badge-info">
                 <h4>Subject Master</h4>
                 <p>Score 85% or higher on any subject topic.</p>
               </div>
             </div>
-            <div class="badge-item locked">
+            <div class="badge-item locked tilt-card">
               <div class="badge-icon-box">🔥</div>
               <div class="badge-info">
                 <h4>Consistent Scholar</h4>
                 <p>Maintain a study streak of 3 or more consecutive days.</p>
               </div>
             </div>
-            <div class="badge-item locked">
+            <div class="badge-item locked tilt-card">
               <div class="badge-icon-box">👑</div>
               <div class="badge-info">
                 <h4>Exit Exam Ready</h4>
@@ -211,13 +222,13 @@
   <!-- Interactive Gemini AI Chatbot Widget -->
   <div class="chatbot-container">
     <!-- Trigger Floating Bubble Button -->
-    <button class="chatbot-trigger" id="chatbot-trigger" onclick="toggleChatbot()" title="Ask AI Study Assistant">
+    <button class="chatbot-trigger magnetic-btn" id="chatbot-trigger" onclick="toggleChatbot()" title="Ask AI Study Assistant">
       <i class="fa-solid fa-sparkles"></i>
       <span class="pulse-indicator"></span>
     </button>
 
     <!-- Floating Chat Window Card -->
-    <div class="glass-card chatbot-window" id="chatbot-window">
+    <div class="glass-card chatbot-window tilt-card" id="chatbot-window">
       <div class="chatbot-header">
         <div class="chatbot-header-title">
           <i class="fa-solid fa-robot"></i>
@@ -240,16 +251,16 @@
 
       <!-- Dynamic Action Pills -->
       <div class="chatbot-suggestions">
-        <button class="suggestion-pill" onclick="sendSuggestedPrompt('Analyze my exit exam readiness')">
+        <button class="suggestion-pill magnetic-btn" onclick="sendSuggestedPrompt('Analyze my exit exam readiness')">
           📈 Analyze Readiness
         </button>
-        <button class="suggestion-pill" onclick="sendSuggestedPrompt('Give me SQL Outer Join tips')">
+        <button class="suggestion-pill magnetic-btn" onclick="sendSuggestedPrompt('Give me SQL Outer Join tips')">
           🔑 SQL Join Tips
         </button>
-        <button class="suggestion-pill" onclick="sendSuggestedPrompt('Explain Operating Systems virtual memory paging')">
+        <button class="suggestion-pill magnetic-btn" onclick="sendSuggestedPrompt('Explain Operating Systems virtual memory paging')">
           🧠 Virtual Memory Paging
         </button>
-        <button class="suggestion-pill" onclick="sendSuggestedPrompt('Draft a 7-day study plan')">
+        <button class="suggestion-pill magnetic-btn" onclick="sendSuggestedPrompt('Draft a 7-day study plan')">
           📅 7-Day Study Plan
         </button>
       </div>
@@ -257,7 +268,7 @@
       <!-- Input Footer Form -->
       <form class="chatbot-footer" id="chatbot-form" onsubmit="handleChatSubmit(event)">
         <input type="text" id="chatbot-input" placeholder="Ask a study question or concept..." autocomplete="off">
-        <button type="submit" class="chatbot-send-btn">
+        <button type="submit" class="chatbot-send-btn magnetic-btn">
           <i class="fa-solid fa-paper-plane"></i>
         </button>
       </form>
@@ -268,6 +279,8 @@
 
   <!-- Client JavaScript integration -->
   <script src="/js/auth.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/background-animation.js"></script>
   <script src="/js/dashboard.js"></script>
 </body>
 </html>

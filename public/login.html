@@ -11,22 +11,33 @@
 </head>
 <body>
 
+  <!-- Animated Gradient Background -->
+  <div class="animated-gradient-bg"></div>
+
+  <!-- Floating animated background blobs -->
+  <div class="glass-bg-blobs">
+    <div class="glowing-blob blob-cyan"></div>
+    <div class="glowing-blob blob-purple"></div>
+    <div class="glowing-blob blob-blue"></div>
+    <div class="glowing-blob blob-green"></div>
+  </div>
+
   <a href="/" class="back-home">
     <i class="fa-solid fa-arrow-left"></i> Back to Home
   </a>
 
   <div style="position: absolute; top: 2rem; right: 2rem; z-index: 100;">
-    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+    <button id="theme-toggle" class="theme-toggle-btn magnetic-btn" title="Toggle Theme">
       <i class="fa-solid fa-moon"></i>
     </button>
   </div>
 
   <div class="auth-container">
     <div class="auth-grid-bg"></div>
-    <div class="glass-card auth-card animate-fade-in">
+    <div class="glass-card auth-card tilt-card animate-fade-in">
       <div class="auth-header">
         <div class="auth-logo" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-          <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 120px; width: auto; border-radius: 8px; margin-bottom: 0.5rem; border: 2px solid var(--primary-neon); box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);">
+          <img src="/images/smu-logo.jpg" alt="SMU Logo" style="height: 120px; width: 120px; object-fit: cover; border-radius: 50%; margin-bottom: 0.5rem; border: 3px solid var(--primary-neon); box-shadow: 0 0 20px rgba(0, 242, 254, 0.4); animation: breathingSVG 4s infinite ease-in-out;">
           <span style="font-size: 1.6rem;">SMU <span class="gradient-text">AI-Prep</span></span>
         </div>
         <h2>Welcome Back</h2>
@@ -49,7 +60,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+        <button type="submit" class="btn btn-primary magnetic-btn" style="width: 100%; margin-top: 1rem;">
           Log In <i class="fa-solid fa-right-to-bracket"></i>
         </button>
       </form>
@@ -63,6 +74,8 @@
   <div class="toast-container" id="toast-container"></div>
 
   <script src="/js/auth.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/background-animation.js"></script>
   <script>
     // Show/Hide password toggle
     document.getElementById('toggle-password').addEventListener('click', function() {
