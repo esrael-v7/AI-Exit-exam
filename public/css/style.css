@@ -1,4 +1,86 @@
 /* ============================================================================
+   LOCK CHATBOT AND EXAM CARDS - NO CURSOR REACTIVE MOVEMENT
+   ============================================================================ */
+#question-card-wrapper,
+#question-card-wrapper * {
+  transform: none !important;
+  perspective: none !important;
+  transition: none !important;
+}
+
+#question-card-wrapper:hover {
+  transform: none !important;
+}
+
+.ai-recommendation-card,
+#ai-recommendation-card,
+.ai-recommendation-card *,
+#ai-recommendation-card * {
+  transform: none !important;
+  perspective: none !important;
+  transition: none !important;
+}
+
+.ai-recommendation-card:hover,
+#ai-recommendation-card:hover {
+  transform: none !important;
+}
+
+/* Ensure chatbot buttons stay stable */
+#question-card-wrapper .magnetic-btn,
+.ai-recommendation-card .magnetic-btn,
+#ai-recommendation-card .magnetic-btn {
+  transform: none !important;
+  transition: none !important;
+}
+
+#question-card-wrapper .magnetic-btn:hover,
+.ai-recommendation-card .magnetic-btn:hover,
+#ai-recommendation-card .magnetic-btn:hover {
+  transform: none !important;
+}
+
+/* ============================================================================
+   DISABLE ANIMATIONS ON EXAM AND DASHBOARD PAGES
+   ============================================================================ */
+body.exam-page,
+body.dashboard-page {
+  background-image: none !important;
+}
+
+body.exam-page .animated-gradient-bg,
+body.dashboard-page .animated-gradient-bg {
+  display: none !important;
+}
+
+body.exam-page .glass-bg-blobs,
+body.dashboard-page .glass-bg-blobs {
+  display: none !important;
+}
+
+body.exam-page .glowing-blob,
+body.dashboard-page .glowing-blob {
+  animation: none !important;
+  display: none !important;
+}
+
+body.exam-page *,
+body.dashboard-page * {
+  animation: none !important;
+  transition: none !important;
+}
+
+body.exam-page .tilt-card,
+body.dashboard-page .tilt-card {
+  transform: none !important;
+}
+
+body.exam-page .magnetic-btn,
+body.dashboard-page .magnetic-btn {
+  transform: none !important;
+}
+
+/* ============================================================================
    DESIGN SYSTEM & GLOBAL VARIABLES (Futuristic Cyber-Dark Theme)
    AI-Based Exit Exam Prep System - St. Mary's University
    ============================================================================ */

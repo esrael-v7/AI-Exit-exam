@@ -50,8 +50,13 @@ function initScrollReveal() {
  */
 function initThreeDTilt() {
   const tiltCards = document.querySelectorAll('.tilt-card');
-  
+
   tiltCards.forEach(card => {
+    // Skip chatbot and exam question cards - keep them stable
+    if (card.id === 'question-card-wrapper' || card.closest('#ai-recommendation-card') || card.closest('.ai-recommendation-card')) {
+      return;
+    }
+
     // Add internal reflection shine overlay dynamically if not already present
     if (!card.querySelector('.tilt-shine')) {
       const shine = document.createElement('div');
@@ -65,17 +70,17 @@ function initThreeDTilt() {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left; // x position within element
       const y = e.clientY - rect.top;  // y position within element
-      
+
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      
+
       // Calculate rotation angles (max 15deg)
-      const rotateX = ((centerY - y) / centerY) * 12; 
+      const rotateX = ((centerY - y) / centerY) * 12;
       const rotateY = ((x - centerX) / centerX) * 12;
 
       // Update transform styles
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-      
+
       // Calculate reflection gradient position
       if (shine) {
         const shineX = (x / rect.width) * 100;
@@ -102,6 +107,11 @@ function initMagneticButtons() {
   const magneticButtons = document.querySelectorAll('.magnetic-btn');
 
   magneticButtons.forEach(btn => {
+    // Skip buttons inside chatbot and exam card - keep them stable
+    if (btn.closest('#question-card-wrapper') || btn.closest('.ai-recommendation-card') || btn.closest('#ai-recommendation-card')) {
+      return;
+    }
+
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
